@@ -42,7 +42,7 @@ class SaleItem:
 		return self._cost
 		
 	def getWeight(self):
-		return self._cost
+		return self._weight
 		
 	def getTitle(self):
 		return self._title
