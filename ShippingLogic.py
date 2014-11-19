@@ -28,7 +28,7 @@ class ShippingLogic:
 		self._rate.append( ( .01, 1, 5) )
 		self._rate.append( ( 1, 5, 7) )
 		self._rate.append( ( 5, None, 10) )
-		self._FREE_SHIPPING_WEIGHT = 100
+		self._FREE_SHIPPING_WEIGHT = 50
 	
 	
 	def calcWeightForCost(self, basket):
@@ -38,7 +38,7 @@ class ShippingLogic:
 		weight = 1
 		
 		for item in basket.items():
-			if not item[1].getFreeShipping() :
+			if item[1].getFreeShipping() :
 				weight += (item[0] * int(item[1].getWeight()))
 				
 		return weight
@@ -48,7 +48,7 @@ class ShippingLogic:
 		""" determine the total cost of shipping the given weight
 		"""
 		
-		cost = 1
+		cost = 0
 		
 		if weight <= self._FREE_SHIPPING_WEIGHT:
 			for rate in self._rate :
@@ -72,7 +72,7 @@ class SaleShippingLogic(ShippingLogic):
 		self._rate.append( ( 1, 3, 4) )
 		self._rate.append( ( 4, 6, 6) )
 		self._rate.append( ( 6, None, 7) )
-		self._FREE_SHIPPING_WEIGHT = 50
+		self._FREE_SHIPPING_WEIGHT = 100
 
 	def getName(self):
 		""" the name of the shipping prices
